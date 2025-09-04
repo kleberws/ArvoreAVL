@@ -1,0 +1,34 @@
+função inserir(no, valor):
+    se no for vazio:
+        retorna novo nó(valor)
+
+    se valor < no.valor:
+        no.esquerda = inserir(no.esquerda, valor)
+    senão se valor > no.valor:
+        no.direita = inserir(no.direita, valor)
+    senão:
+        retorna no   
+
+    atualizar altura do no
+
+    fator = altura(no.esquerda) - altura(no.direita)
+
+    // rotação simples à direita
+    se fator > 1 e valor < no.esquerda.valor:
+        retorna rotacaoDireita(no)
+
+    // rotação simples à esquerda
+    se fator < -1 e valor > no.direita.valor:
+        retorna rotacaoEsquerda(no)
+
+    // rotação dupla esquerdadireita
+    se fator > 1 e valor > no.esquerda.valor:
+        no.esquerda = rotacaoEsquerda(no.esquerda)
+        retorna rotacaoDireita(no)
+
+    // rotação dupla direitaesquerda
+    se fator < -1 e valor < no.direita.valor:
+        no.direita = rotacaoDireita(no.direita)
+        retorna rotacaoEsquerda(no)
+
+    retorna no
